@@ -5,14 +5,13 @@ using UnityEngine;
 public class forkBlockCollission : MonoBehaviour {
 
     Vector3 tempForkPosition, currentForkPosition, diffForkPosition;
-    bool forked;
-    GameObject fork;
-    
+    public bool forked;
+    public GameObject fork;
+    public GameObject releaseButton;
 
 	// Use this for initialization
 	void Start () {
         forked = false;
-
 	}
 	
 	// Update is called once per frame
@@ -28,15 +27,24 @@ public class forkBlockCollission : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Fork" && forked == false)
+        if (other.gameObject.name == "Fork" && forked == false && ReleaseButtonScript.forkedBlock==null)
         {
             Debug.Log("BLOCK Touched");
             other.isTrigger = false;
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             fork = other.gameObject;
+            releaseButton.SetActive(true);
+            ReleaseButtonScript.forkedBlock = this.gameObject;
             tempForkPosition = fork.transform.position;
             forked = true;
         }
+    }
+
+    public void forkDisable()
+    {
+        fork.GetComponent<Collider>().isTrigger = true;
+        forked = false;
     }
 
 }
