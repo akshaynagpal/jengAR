@@ -25,9 +25,9 @@ public class ReleaseButtonScript : MonoBehaviour {
 
     public void releaseBlock()
     {
-        forkedBlock.GetComponent<Rigidbody>().useGravity = true;
-        forkedBlock.GetComponent<Rigidbody>().isKinematic = false;
-        forkedBlock.GetComponent<forkBlockCollission>().forkDisable();
+        forkedBlock.GetComponent<Rigidbody>().useGravity = true;                // activate gravity
+        forkedBlock.GetComponent<Rigidbody>().isKinematic = false;              // deactivate kinematic
+        forkedBlock.GetComponent<forkBlockCollission>().forkDisable();          // call function in other file
         forkedBlock = null;
     }
 }

@@ -39,6 +39,11 @@ public class forkBlockCollission : MonoBehaviour {
             tempForkPosition = fork.transform.position;
             forked = true;
         }
+
+        if (other.gameObject.CompareTag("gameOverZone") && forked == false)
+        {
+            Debug.Log("GAME OVER");
+        }
     }
 
     public void forkDisable()
