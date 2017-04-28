@@ -11,7 +11,9 @@ public class PlatformController : MonoBehaviour {
 
 	private int floor;
 
-	GameObject[] indicators;
+	private GameObject[] indicators;
+
+	public GameObject camera;
 
 	// Use this for initialization
 	void Start () {
