@@ -23,6 +23,8 @@ namespace Vuforia
 		public GameObject world;
 		private GameObject miniWorld;
 
+		private bool visible;
+
 		#region UNTIY_MONOBEHAVIOUR_METHODS
 
 		void Start()
@@ -31,6 +33,27 @@ namespace Vuforia
 			if (mTrackableBehaviour)
 			{
 				mTrackableBehaviour.RegisterTrackableEventHandler(this);
+			}
+		}
+
+		void Update()
+		{
+			if (visible) {
+				if (miniWorld != null) {
+					Destroy (miniWorld);
+				}
+			}
+		}
+
+		void LateUpdate()
+		{
+			/*if (miniWorld != null) {
+				Destroy (miniWorld);
+			}*/
+			if (visible) {
+				miniWorld = Instantiate (world, gameObject.transform);
+				miniWorld.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
+				miniWorld.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
 			}
 		}
 
@@ -85,10 +108,12 @@ namespace Vuforia
 			}
 
 			Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-
+			/*
 			miniWorld = Instantiate (world, gameObject.transform);
 			miniWorld.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
-			miniWorld.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
+			miniWorld.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);*/
+
+			visible = true;
 		}
 
 
@@ -111,7 +136,8 @@ namespace Vuforia
 
 			Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
 
-			Destroy (miniWorld);
+			//Destroy (miniWorld);
+			visible = false;
 		}
 
 		#endregion // PRIVATE_METHODS
