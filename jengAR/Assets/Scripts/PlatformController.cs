@@ -21,10 +21,10 @@ public class PlatformController : MonoBehaviour {
 		indicators = GameObject.FindGameObjectsWithTag ("LvlIndicator");
 		floor = 0;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		floor = (int)((transform.localPosition.y - ground.transform.localPosition.y) / blockHeight);
+		floor = (int)((transform.position.y - ground.transform.position.y) / blockHeight);
 		foreach (GameObject indicator in indicators) {
 			indicator.GetComponent<TextMesh> ().text = floor.ToString ();
 		}
