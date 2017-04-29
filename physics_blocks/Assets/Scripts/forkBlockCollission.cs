@@ -27,9 +27,10 @@ public class forkBlockCollission : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Fork" && forked == false && ReleaseButtonScript.forkedBlock==null)
+        if (ReleaseButtonScript.selectionMode && other.gameObject.name == "Fork" && forked == false && ReleaseButtonScript.forkedBlock==null)
         {
             Debug.Log("BLOCK Touched");
+            ReleaseButtonScript.selectionMode = false;
             other.isTrigger = false;
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -51,5 +52,4 @@ public class forkBlockCollission : MonoBehaviour {
         fork.GetComponent<Collider>().isTrigger = true;
         forked = false;
     }
-
 }
