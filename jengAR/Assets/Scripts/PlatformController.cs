@@ -12,7 +12,7 @@ public class PlatformController : MonoBehaviour {
 	private int floor;
 
 	private GameObject[] indicators;
-	private Quaternion indicatorRotate;
+	private float indicatorDelta;
 
 	public GameObject arCam;
 
@@ -39,16 +39,18 @@ public class PlatformController : MonoBehaviour {
 	void Update () {
 		hereVec = arCam.transform.position - transform.position;
 		hereVec.y = 0.0f;
-		hereRotate = Quaternion.AngleAxis (CalculateAngle(refVec, hereVec), Vector3.up);
+		hereRotate = Quaternion.AngleAxis (CalculateAngle(refVec, hereVec), transform.TransformDirection(Vector3.up));
 		Vector3 herePos = hereRotate * refVec;
 		herePos.y = 0.2f;
 		hereDot.transform.localPosition = herePos;
 
 		floor = (int)((transform.position.y - ground.transform.position.y) / blockHeight);
-		indicatorRotate = Quaternion.AngleAxis (CalculateAngle(lastHereVec, hereVec), Vector3.up);
+
+		indicatorDelta = CalculateAngle (lastHereVec, hereVec);
 		foreach (GameObject indicator in indicators) {
 			indicator.GetComponent<TextMesh> ().text = floor.ToString ();
-			indicator.transform.localPosition = indicatorRotate * indicator.transform.localPosition;
+			Vector3 indicatorCenter = new Vector3 (0.0f, indicator.transform.position.y, 0.0f);
+			indicator.transform.RotateAround (indicatorCenter, transform.TransformDirection (Vector3.up), indicatorDelta);
 		}
 
 		lastHereVec = hereVec;
@@ -59,7 +61,7 @@ public class PlatformController : MonoBehaviour {
 	{
 		float angle = Vector3.Angle(from, to);
 
-		float sign = Mathf.Sign(Vector3.Dot(Vector3.up, Vector3.Cross(from, to)));
+		float sign = Mathf.Sign(Vector3.Dot(transform.TransformDirection(Vector3.up), Vector3.Cross(from, to)));
 		float signed_angle = angle * sign;
 
 		return signed_angle;
