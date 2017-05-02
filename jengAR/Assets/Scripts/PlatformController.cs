@@ -16,6 +16,8 @@ public class PlatformController : MonoBehaviour {
 
 	public GameObject arCam;
 
+	public GameObject light;
+
 	public GameObject hereDot;
 	private Vector3 hereVec;
 	private Vector3 lastHereVec;
@@ -54,6 +56,9 @@ public class PlatformController : MonoBehaviour {
 		}
 
 		lastHereVec = hereVec;
+
+		light.transform.position = arCam.transform.position;
+		light.transform.rotation = arCam.transform.rotation;
 	}
 
 	// Get the actual [-180, 180] angle between vectors
