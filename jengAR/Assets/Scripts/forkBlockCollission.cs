@@ -37,7 +37,7 @@ public class forkBlockCollission : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ReleaseButtonScript.selectionMode && other.gameObject.name == "Fork" && forked == false && ReleaseButtonScript.forkedBlock==null)
+        if (ReleaseButtonScript.selectionMode && other.gameObject.tag == "Fork" && forked == false && ReleaseButtonScript.forkedBlock==null)
         {
             Debug.Log("BLOCK Touched");
             ReleaseButtonScript.selectionMode = false;
