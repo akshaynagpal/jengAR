@@ -11,10 +11,12 @@ public class forkBlockCollission : MonoBehaviour {
 
 	public GameObject platform;
 	public GameObject tower;
+    public GameObject gameOverPanel;
 
 	// Use this for initialization
 	void Start () {
         forked = false;
+        gameOverPanel.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -46,10 +48,12 @@ public class forkBlockCollission : MonoBehaviour {
             forked = true;
         }
 
-        //if (other.gameObject.CompareTag("gameOverZone") && forked == false)
-        //{
-        //    Debug.Log("GAME OVER");
-        //}
+        if (other.gameObject.CompareTag("gameoverzone") && forked == false)
+        {
+            Debug.Log("GAME OVER");
+            gameOverPanel.SetActive(true);
+
+        }
     }
 
     public void forkDisable()
