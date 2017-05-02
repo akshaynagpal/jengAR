@@ -13,10 +13,13 @@ public class forkBlockCollission : MonoBehaviour {
 	public GameObject tower;
     public GameObject gameOverPanel;
 
+	private bool disableInteractions;
+
 	// Use this for initialization
 	void Start () {
         forked = false;
         gameOverPanel.SetActive(false);
+		disableInteractions = false;
 	}
 	
 	// Update is called once per frame
@@ -50,9 +53,10 @@ public class forkBlockCollission : MonoBehaviour {
 
         if (other.gameObject.CompareTag("gameoverzone") && forked == false)
         {
-            Debug.Log("GAME OVER");
-            gameOverPanel.SetActive(true);
-
+			if (!disableInteractions) {
+				Debug.Log ("GAME OVER");
+				gameOverPanel.SetActive (true);
+			}
         }
     }
 
@@ -67,4 +71,8 @@ public class forkBlockCollission : MonoBehaviour {
 		this.gameObject.GetComponent<Rigidbody>().useGravity = !toDisable;
         this.gameObject.GetComponent<Rigidbody>().isKinematic = toDisable;
     }
+
+	public void interactionDisable(bool toDisable) {
+		disableInteractions = !toDisable;
+	}
 }

@@ -6,11 +6,13 @@ using Vuforia;
 public class groundPlaneDetect : MonoBehaviour, ITrackableEventHandler
 {
     public GameObject tower;
+	public GameObject world;
     bool firstTrack;
     private TrackableBehaviour mTrackableBehaviour;
     // Use this for initialization
     void Start () {
         tower.SetActive(false);
+		world.SetActive (false);
         firstTrack = true;
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
@@ -26,12 +28,14 @@ public class groundPlaneDetect : MonoBehaviour, ITrackableEventHandler
         {
             // View cube when imagetarget is found
             tower.SetActive(true);
+			world.SetActive (true);
             firstTrack = false;
         }
         else
         {
             // Todo
-            
+			tower.SetActive(false);
+			world.SetActive (false);
         }
     }
 

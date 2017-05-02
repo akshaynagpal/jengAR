@@ -54,6 +54,7 @@ namespace Vuforia
 				miniWorld = Instantiate (world, gameObject.transform);
 				miniWorld.transform.localScale = new Vector3 (0.1f, 0.1f, 0.1f);
 				miniWorld.transform.localPosition = new Vector3 (0.0f, 0.0f, 0.0f);
+				miniWorld.GetComponent<WorldSwitch> ().flipSwitch (false);
 			}
 		}
 
