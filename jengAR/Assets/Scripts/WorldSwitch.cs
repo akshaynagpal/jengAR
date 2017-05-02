@@ -7,6 +7,7 @@ public class WorldSwitch : MonoBehaviour {
 	public bool enabled;
 
 	public GameObject tower;
+	public GameObject toy;
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +25,22 @@ public class WorldSwitch : MonoBehaviour {
 				child.GetComponent<forkBlockCollission> ().gravityDisable (true);
 				child.GetComponent<forkBlockCollission> ().interactionDisable (true);
 			}
+			toy.GetComponent<Collider> ().enabled = true;
+			foreach (Transform item in toy.transform) {
+				if (item.GetComponent<Collider> () != null) {
+					item.GetComponent<Collider> ().enabled = true;
+				}
+			}
 		} else {
 			foreach (Transform child in tower.transform) {
 				child.GetComponent<forkBlockCollission> ().gravityDisable (false);
 				child.GetComponent<forkBlockCollission> ().interactionDisable (false);
+			}
+			toy.GetComponent<Collider> ().enabled = false;
+			foreach (Transform item in toy.transform) {
+				if (item.GetComponent<Collider> () != null) {
+					item.GetComponent<Collider> ().enabled = false;
+				}
 			}
 		}
 	}

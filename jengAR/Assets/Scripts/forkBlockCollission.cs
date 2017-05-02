@@ -74,5 +74,6 @@ public class forkBlockCollission : MonoBehaviour {
 
 	public void interactionDisable(bool toDisable) {
 		disableInteractions = !toDisable;
+		gameObject.GetComponent<Collider> ().enabled = false;
 	}
 }
