@@ -46,10 +46,10 @@ public class forkBlockCollission : MonoBehaviour {
             forked = true;
         }
 
-        if (other.gameObject.CompareTag("gameOverZone") && forked == false)
-        {
-            Debug.Log("GAME OVER");
-        }
+        //if (other.gameObject.CompareTag("gameOverZone") && forked == false)
+        //{
+        //    Debug.Log("GAME OVER");
+        //}
     }
 
     public void forkDisable()

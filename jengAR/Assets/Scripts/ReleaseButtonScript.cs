@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReleaseButtonScript : MonoBehaviour {
     public GameObject releaseButton;
+    public GameObject helpButton;
+    public Text helpButtonText;
+    public GameObject helpPanel;
     public static  GameObject forkedBlock;
     public GameObject fork;
     public GameObject selectButton;
@@ -15,6 +19,8 @@ public class ReleaseButtonScript : MonoBehaviour {
         releaseButton.SetActive(false);
         selectionMode = false;
         selectButton.SetActive(true);
+        helpButton.SetActive(true);
+        helpPanel.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -40,5 +46,19 @@ public class ReleaseButtonScript : MonoBehaviour {
     {
         selectionMode = t;
         selectButton.SetActive(!t);
+    }
+
+    public void showHelp()
+    {
+        if (helpPanel.activeSelf)
+        {
+            helpButtonText.text = "HELP";
+            helpPanel.SetActive(false);
+        }
+        else
+        {
+            helpButtonText.text = "CLOSE";
+            helpPanel.SetActive(true);
+        }
     }
 }
