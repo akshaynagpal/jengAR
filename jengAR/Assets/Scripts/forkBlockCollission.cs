@@ -62,9 +62,9 @@ public class forkBlockCollission : MonoBehaviour {
         forked = false;
     }
 
-    public void gravityDisable()
+	public void gravityDisable(bool toDisable)
     {
-        this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-        this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+		this.gameObject.GetComponent<Rigidbody>().useGravity = !toDisable;
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = toDisable;
     }
 }

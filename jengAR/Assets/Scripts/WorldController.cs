@@ -9,6 +9,8 @@ public class WorldController : MonoBehaviour {
 
 	private int moveType;
 
+	public GameObject tower;
+
 	// Use this for initialization
 	void Start () {
 		nextPos = transform.localPosition;
@@ -21,13 +23,22 @@ public class WorldController : MonoBehaviour {
 
 	public void BeginUp() {
 		moveType = 1;
+		foreach (Transform block in tower.transform) {
+			block.GetComponent<forkBlockCollission> ().gravityDisable(true);
+		}
 	}
 
 	public void BeginDown() {
 		moveType = -1;
+		foreach (Transform block in tower.transform) {
+			block.GetComponent<forkBlockCollission> ().gravityDisable(true);
+		}
 	}
 
 	public void EndMove() {
 		moveType = 0;
+		foreach (Transform block in tower.transform) {
+			block.GetComponent<forkBlockCollission> ().gravityDisable(false);
+		}
 	}
 }
