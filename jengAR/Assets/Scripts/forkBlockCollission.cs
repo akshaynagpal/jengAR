@@ -19,7 +19,7 @@ public class forkBlockCollission : MonoBehaviour {
 	void Start () {
         forked = false;
         gameOverPanel.SetActive(false);
-		disableInteractions = false;
+        disableInteractions = false;
 	}
 	
 	// Update is called once per frame

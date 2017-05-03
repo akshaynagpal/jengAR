@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ReleaseButtonScript : MonoBehaviour {
@@ -61,5 +62,9 @@ public class ReleaseButtonScript : MonoBehaviour {
             helpButtonText.text = "CLOSE";
             helpPanel.SetActive(true);
         }
+    }
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
