@@ -39,6 +39,7 @@ public class ReleaseButtonScript : MonoBehaviour {
         forkedBlock.GetComponent<Rigidbody>().useGravity = true;                // activate gravity
         forkedBlock.GetComponent<Rigidbody>().isKinematic = false;              // deactivate kinematics
         forkedBlock.GetComponent<forkBlockCollission>().forkDisable();          // call function in other file
+        forkedBlock.GetComponent<forkBlockCollission>().unHighlightObject();          // call unhighlight function in other file
         forkedBlock = null;
     }
 

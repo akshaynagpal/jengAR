@@ -14,7 +14,7 @@ public class forkBlockCollission : MonoBehaviour {
     public GameObject gameOverPanel;
 
 	private bool disableInteractions;
-
+    public Color highlightColor = new Color(0f, 200f, 0f);
 	// Use this for initialization
 	void Start () {
         forked = false;
@@ -41,6 +41,7 @@ public class forkBlockCollission : MonoBehaviour {
         {
             Debug.Log("BLOCK Touched");
             ReleaseButtonScript.selectionMode = false;
+            highlightObject();
             other.isTrigger = false;
             this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -76,4 +77,26 @@ public class forkBlockCollission : MonoBehaviour {
 		disableInteractions = !toDisable;
 		gameObject.GetComponent<Collider> ().enabled = false;
 	}
+
+    // highlight the selected object
+    public void highlightObject()
+    {
+            Renderer rend = this.gameObject.GetComponent<Renderer>();
+            rend.material.color += highlightColor;
+            foreach (Renderer r in this.gameObject.GetComponentsInChildren<Renderer>())
+            {
+                r.material.color += highlightColor;
+            }
+    }
+
+    public void unHighlightObject()
+    {
+            Renderer rend = this.gameObject.GetComponent<Renderer>();
+            rend.material.color -= highlightColor;
+            foreach (Renderer r in this.gameObject.GetComponentsInChildren<Renderer>())
+            {
+                r.material.color -= highlightColor;
+            }
+    }
+
 }
