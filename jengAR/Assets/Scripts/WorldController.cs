@@ -5,7 +5,9 @@ using UnityEngine;
 public class WorldController : MonoBehaviour {
 
 	Vector3 nextPos;
-	public Vector3 moveDelta;
+	private Vector3 moveDelta;
+	public Vector3 initMoveDelta;
+	public Vector3 moveDeltaDelta;
 
 	private int moveType;
 
@@ -14,11 +16,13 @@ public class WorldController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		nextPos = transform.localPosition;
+		moveDelta = initMoveDelta;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.localPosition += moveType * moveDelta;
+		moveDelta += moveDeltaDelta;
 	}
 
 	public void BeginUp() {
@@ -40,5 +44,6 @@ public class WorldController : MonoBehaviour {
 		foreach (Transform block in tower.transform) {
 			block.GetComponent<forkBlockCollission> ().gravityDisable(false);
 		}
+		moveDelta = initMoveDelta;
 	}
 }
