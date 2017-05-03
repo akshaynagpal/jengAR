@@ -8,15 +8,24 @@ public class WorldSwitch : MonoBehaviour {
 
 	public GameObject tower;
 	public GameObject toy;
+	public GameObject hereDot;
+
+	private bool gameOverMode;
+	public Vector3 gameOverStepper;
+	public Vector3 gameOverScale;
 
 	// Use this for initialization
 	void Start () {
-		
+		gameOverMode = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (gameOverMode) {
+			if (transform.localScale.magnitude > gameOverScale.magnitude) {
+				transform.localScale -= gameOverStepper;
+			}
+		}
 	}
 
 	public void flipSwitch(bool isOn) {
@@ -31,6 +40,7 @@ public class WorldSwitch : MonoBehaviour {
 					item.GetComponent<Collider> ().enabled = true;
 				}
 			}
+			hereDot.SetActive (true);
 		} else {
 			foreach (Transform child in tower.transform) {
 				child.GetComponent<forkBlockCollission> ().gravityDisable (false);
@@ -44,6 +54,12 @@ public class WorldSwitch : MonoBehaviour {
 					item.GetComponent<Collider> ().isTrigger = true;
 				}
 			}
+			hereDot.SetActive (false);
 		}
+	}
+
+	public void gameOverOps(bool enter) {
+		gameOverMode = enter;
+		toy.GetComponent<WorldController> ().gameOverOps (enter);
 	}
 }

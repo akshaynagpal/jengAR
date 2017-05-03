@@ -13,16 +13,26 @@ public class WorldController : MonoBehaviour {
 
 	public GameObject tower;
 
+	private bool gameOverMode;
+
+	public GameObject hover;
+
 	// Use this for initialization
 	void Start () {
 		nextPos = transform.localPosition;
 		moveDelta = initMoveDelta;
+		gameOverMode = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.localPosition += moveType * moveDelta;
 		moveDelta += moveDeltaDelta;
+		if (gameOverMode) {
+			if (hover.GetComponent<PlatformController> ().floor == 0) {
+				EndMove ();
+			}
+		}
 	}
 
 	public void BeginUp() {
@@ -45,5 +55,16 @@ public class WorldController : MonoBehaviour {
 			block.GetComponent<forkBlockCollission> ().gravityDisable(false);
 		}
 		moveDelta = initMoveDelta;
+	}
+
+	public void gameOverOps(bool enter) {
+		if (enter) {
+			gameOverMode = true;
+			if (hover.GetComponent<PlatformController> ().floor > 0) {
+				moveType = 1;
+			} else if (hover.GetComponent<PlatformController> ().floor < 0) {
+				moveType = -1;
+			}
+		}
 	}
 }

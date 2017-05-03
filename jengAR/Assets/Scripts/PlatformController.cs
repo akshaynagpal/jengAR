@@ -9,7 +9,7 @@ public class PlatformController : MonoBehaviour {
 
 	public GameObject ground;
 
-	private int floor;
+	public int floor;
 
 	private GameObject[] indicators;
 	private float indicatorDelta;
@@ -44,6 +44,7 @@ public class PlatformController : MonoBehaviour {
 		herePos.y = 0.2f;
 		hereDot.transform.localPosition = herePos;
 
+		blockHeight = blockHeight = block.GetComponent<Renderer> ().bounds.size.y;
 		floor = (int)((transform.position.y - ground.transform.position.y) / blockHeight);
 
 		indicatorDelta = CalculateAngle (lastHereVec, hereVec);

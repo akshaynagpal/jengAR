@@ -70,11 +70,30 @@ public class ReleaseButtonScript : MonoBehaviour {
 		if (!enable) {
 			upButton.GetComponent<Button> ().interactable = false;
 			selectButton.GetComponent<Button> ().interactable = false;
+			releaseButton.GetComponent<Button> ().interactable = false;
 			helpButton.GetComponent<Button> ().interactable = false;
 		} else {
 			upButton.GetComponent<Button> ().interactable = true;
 			selectButton.GetComponent<Button> ().interactable = true;
+			releaseButton.GetComponent<Button> ().interactable = true;
 			helpButton.GetComponent<Button> ().interactable = true;
+		}
+	}
+
+	public void gameOverOps(bool enter)
+	{
+		if (enter) {
+			upButton.SetActive (false);
+			selectButton.SetActive (false);
+			releaseButton.SetActive (false);
+			downButton.SetActive (false);
+			helpButton.SetActive (false);
+		} else {
+			upButton.SetActive (true);
+			selectButton.SetActive (true);
+			releaseButton.SetActive (true);
+			downButton.SetActive (true);
+			helpButton.SetActive (false);
 		}
 	}
 		

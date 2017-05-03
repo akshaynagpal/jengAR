@@ -13,6 +13,10 @@ public class forkBlockCollission : MonoBehaviour {
 	public GameObject tower;
     public GameObject gameOverPanel;
 
+	public GameObject dummy;
+
+	public GameObject world;
+
 	private bool disableInteractions;
     public Color highlightColor = new Color(0f, 200f, 0f);
 	// Use this for initialization
@@ -57,6 +61,7 @@ public class forkBlockCollission : MonoBehaviour {
 			if (!disableInteractions) {
 				Debug.Log ("GAME OVER");
 				gameOverPanel.SetActive (true);
+				gameOverOps (true);
 			}
         }
     }
@@ -99,4 +104,9 @@ public class forkBlockCollission : MonoBehaviour {
             }
     }
 
+	void gameOverOps(bool enter)
+	{
+		dummy.GetComponent<ReleaseButtonScript> ().gameOverOps (enter);
+		world.GetComponent<WorldSwitch> ().gameOverOps (enter);
+	}
 }
