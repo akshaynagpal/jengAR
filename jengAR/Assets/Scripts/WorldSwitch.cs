@@ -36,10 +36,12 @@ public class WorldSwitch : MonoBehaviour {
 				child.GetComponent<forkBlockCollission> ().gravityDisable (false);
 				child.GetComponent<forkBlockCollission> ().interactionDisable (false);
 			}
-			toy.GetComponent<Collider> ().enabled = false;
+			toy.GetComponent<Collider> ().isTrigger = true;
+			toy.GetComponent<Rigidbody> ().detectCollisions = false;
+			toy.GetComponent<Rigidbody> ().isKinematic = true;
 			foreach (Transform item in toy.transform) {
 				if (item.GetComponent<Collider> () != null) {
-					item.GetComponent<Collider> ().enabled = false;
+					item.GetComponent<Collider> ().isTrigger = true;
 				}
 			}
 		}
