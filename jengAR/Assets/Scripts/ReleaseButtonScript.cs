@@ -49,7 +49,7 @@ public class ReleaseButtonScript : MonoBehaviour {
     public void toggleSelectionMode(bool t)
     {
         selectionMode = t;
-        selectButton.SetActive(!t);
+        selectButton.GetComponent<Button>().interactable = !t;
     }
 
 	public void switchButtonsUp(bool enable)
