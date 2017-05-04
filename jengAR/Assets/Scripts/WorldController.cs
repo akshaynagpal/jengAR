@@ -27,7 +27,9 @@ public class WorldController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.localPosition += moveType * moveDelta;
-		moveDelta += moveDeltaDelta;
+		if (moveType != 0) {
+			moveDelta += moveDeltaDelta;
+		}
 		if (gameOverMode) {
 			if (hover.GetComponent<PlatformController> ().floor == 0) {
 				EndMove ();
